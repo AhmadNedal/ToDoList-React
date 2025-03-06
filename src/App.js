@@ -25,7 +25,6 @@ function App() {
   let [add , setAdd] = useState(false) ; 
   let [index , setIndex] = useState( parseInt(localStorage.getItem("index")) ); 
   let [status , setStatus ] = useState(false); 
-  let [array,setArray] = useState(JSON.parse(localStorage.getItem ("ToDoList") )); 
   const [selected, setSelected] = useState("الأقدم");
   const [open, setOpen] = useState(false);
   let [op,setOp] = useState(false)
@@ -47,17 +46,40 @@ const fetchDataNow=()=>{
   return lastdate ;
 
 }
+let aa = JSON.parse(localStorage.getItem ("ToDoList") ) ; 
 
-if ( array == null ) {
-  let arr = [
+if ( aa == null ) { 
+  aa = [
     { id : 0  , name : "هنا عنوان المهمة " , title :"هنا التفاصيل" , time:fetchDataNow(), done :true} , 
-    { id : 1  , name : "222هنا عنوان المهمة " , title :"222هنا التفاصيل" , time :fetchDataNow(), done :false} 
+    { id : 1  , name : "2هنا عنوان المهمة " , title :"2هنا التفاصيل" , time :fetchDataNow(), done :false} 
    ] ;
-   setArray(arr) ;
-   localStorage.setItem("ToDoList", JSON.stringify(array));
+  localStorage.setItem("ToDoList", JSON.stringify(aa));
 
+}else {
+  aa=  JSON.parse(localStorage.getItem ("ToDoList") ); 
 
 }
+
+
+let [array,setArray] = useState(aa ); 
+
+useEffect(()=>{ 
+  if ( JSON.parse(localStorage.getItem ("ToDoList") ) == null ) {
+
+    let arr = [
+      { id : 0  , name : "هنا عنوان المهمة " , title :"هنا التفاصيل" , time:fetchDataNow(), done :true} , 
+      { id : 1  , name : "2هنا عنوان المهمة " , title :"2هنا التفاصيل" , time :fetchDataNow(), done :false} 
+     ] ;
+     setArray(
+      [
+        { id : 0  , name : "هنا عنوان المهمة " , title :"هنا التفاصيل" , time:fetchDataNow(), done :true} , 
+        { id : 1  , name : "2هنا عنوان المهمة " , title :"2هنا التفاصيل" , time :fetchDataNow(), done :false} 
+       ]
+       
+     )
+     localStorage.setItem("ToDoList", JSON.stringify(arr));
+  }
+},[])
 
 
 
