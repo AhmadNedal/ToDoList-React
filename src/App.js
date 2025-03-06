@@ -1,21 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
-
-
-
-
-
-
-
-function App() {
-  // localStorage.setItem("ToDoList", JSON.stringify(
-  //   [ { id : 0, name : "هنا عنوان المهمة " , title :"هنا التفاصيل" , time : `----`, done :true} , 
-  //     {id : 1 ,name : "222هنا عنوان المهمة " , title :"222هنا التفاصيل" , time : ` HHH`, done :false} 
-  //    ] 
-  // ));
-  
-  
+function App() {   
   let [bool ,setBool] = useState(true); 
   let [bool2 ,setBool2] = useState(true); 
   let [element,setElement] = useState({});
@@ -130,15 +116,9 @@ useEffect(()=> {
         onChange={(ee)=>{
           setTitle(ee.target.value);
         }}
-
       ></textarea>
-
-
       <p className="text-gray-600 text-center mt-3 font-semibold">{element.time|| fetchDataNow() } </p>
-      
-        <div className="allImage">
-
-          
+        <div className="allImage">          
       <img onClick={(ee)=>{
         let allele = document.querySelectorAll(".imgdone"); 
         allele.forEach((e)=>{ 
@@ -195,17 +175,8 @@ useEffect(()=> {
   </div>
   );
 }
-
-
-
-
-
-  
-
   return (
   <div>
-    
-    
     <div className="header">
             <button onClick={DontDone} className='btn'>لم تتم </button>
             <button onClick={fetchDone} className='btn'>تمت  </button>
@@ -263,9 +234,6 @@ useEffect(()=> {
         </div>
       )}
     </div>
-
-
- 
       <div style={{width:"100%"}}>
         <div className="AllCardInApp ">
 
@@ -318,10 +286,7 @@ function fetchAll(){
   setBool(true);
   let newnew = JSON.parse(localStorage.getItem ("ToDoList") ); 
   setArray ( newnew ) ; 
-}
-
-
-  
+}  
 function Card(arr) { 
 
   return (
