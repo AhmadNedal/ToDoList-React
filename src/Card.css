@@ -1,0 +1,52 @@
+.headerinCard{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+.headerinCard img { 
+  width: 25px;
+}
+
+.AllContentInCard{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+
+
+
+
+.btn2{ 
+  background-color: rgb(159, 164, 97) ; 
+  color: rgb(255, 255, 255);
+  border: none ;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 11px;
+  padding-left: 12px;
+  padding-right: 12px;
+  transition: .5s;
+  text-decoration: none;
+}
+
+.btn2:hover { 
+  background-color: rgb(102, 107, 69) ; 
+  color: white;
+} 
+
+.NameHeaders{ 
+  font-size: 25px;
+}
+
+.AllContentInCard{ 
+  background-color: wheat;
+  width: fit-content;
+  padding: 22px;
+  border-radius: 10px;
+}
