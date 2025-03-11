@@ -14,10 +14,7 @@ function App() {
   const [selected, setSelected] = useState("الأقدم");
   const [open, setOpen] = useState(false);
   let [op,setOp] = useState(false)
-  const options = ["الأقدم", "الأحدث"];
-
-  
-  
+  const options = ["الأقدم", "الأحدث"];  
 const fetchDataNow=()=>{
   let now = new Date();
   let hours = now.getHours();
@@ -30,28 +27,20 @@ const fetchDataNow=()=>{
   minutes = minutes.toString().padStart(2, "0");
   let lastdate =  ` ${year}/${month}/${day} , ${hours}:${minutes} ${ampm}` ; 
   return lastdate ;
-
 }
 let aa = JSON.parse(localStorage.getItem ("ToDoList") ) ; 
-
 if ( aa == null ) { 
   aa = [
     { id : 0  , name : "هنا عنوان المهمة " , title :"هنا التفاصيل" , time:fetchDataNow(), done :true} , 
     { id : 1  , name : "2هنا عنوان المهمة " , title :"2هنا التفاصيل" , time :fetchDataNow(), done :false} 
    ] ;
   localStorage.setItem("ToDoList", JSON.stringify(aa));
-
 }else {
   aa=  JSON.parse(localStorage.getItem ("ToDoList") ); 
-
 }
-
-
 let [array,setArray] = useState(aa ); 
-
 useEffect(()=>{ 
   if ( JSON.parse(localStorage.getItem ("ToDoList") ) == null ) {
-
     let arr = [
       { id : 0  , name : "هنا عنوان المهمة " , title :"هنا التفاصيل" , time:fetchDataNow(), done :true} , 
       { id : 1  , name : "2هنا عنوان المهمة " , title :"2هنا التفاصيل" , time :fetchDataNow(), done :false} 
@@ -59,18 +48,11 @@ useEffect(()=>{
      setArray(
       [
         { id : 0  , name : "هنا عنوان المهمة " , title :"هنا التفاصيل" , time:fetchDataNow(), done :true} , 
-        { id : 1  , name : "2هنا عنوان المهمة " , title :"2هنا التفاصيل" , time :fetchDataNow(), done :false} 
-       ]
-       
-     )
-     localStorage.setItem("ToDoList", JSON.stringify(arr));
+        { id : 1  , name : "2هنا عنوان المهمة " , title :"2هنا التفاصيل" , time :fetchDataNow(), done :false}]
+     ) localStorage.setItem("ToDoList", JSON.stringify(arr));
   }
 },[])
-
-
-
-
-useEffect(()=> { 
+  useEffect(()=> { 
     const inputElement = document.getElementById('Headerr');
     if ( inputElement!=null)inputElement.focus();
 }, [ header])
@@ -81,16 +63,10 @@ useEffect(()=> {
 
 }, [ title])
 
-
-
-
-
   function ToDoDes() { 
   return (  <div className="flex flex-col w-full items-center  justify-center min-h-screen bg-gray-100 p-4 card">
     <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-md flex flex-col w-full items-center  justify-center">
-      
       <h1 className='mb-5'>{bool2?`للعرض`: add? `اضافة`:`تعديل`}</h1>
-
       <input
         disabled={bool2}
         type="text"
@@ -105,8 +81,6 @@ useEffect(()=> {
           setHeader(ee.target.value);
         }} 
       />
-
-
       <textarea
         disabled={bool2}
         id='title'
@@ -125,23 +99,16 @@ useEffect(()=> {
             e.classList.remove("active"); 
         })
         ee.target.classList.add("active");
-        setStatus(true) ; 
-
-      }} 
+        setStatus(true) ;}} 
        className={`${element.done ?'active': ''} imgdone `} src={require("./images/check.png")}/>
-
       <img onClick={(ee)=>{
         let allele = document.querySelectorAll(".imgdone"); 
-        
         allele.forEach((e)=>{
-            e.classList.remove("active"); 
-        })
+            e.classList.remove("active");})
         setStatus(false) ; 
         ee.target.classList.add("active");
       }} className={`${element.done ?'':'active'} imgdone `} src={require("./images/no.png")}/>
-    
         </div>
-
       <button
         className="w-full bg-blue-500 text-white p-2 mt-3 rounded-lg hover:bg-blue-600 transition"
         onClick={()=>{
@@ -152,8 +119,6 @@ useEffect(()=> {
             setArray(newnew);
            localStorage.setItem("ToDoList", JSON.stringify(newnew));
             setBool(true);
- 
-
           }else if ( !bool2 ) {
             let newnew = JSON.parse(localStorage.getItem("ToDoList")); 
           let newArrayyy = newnew.filter((e)=>{
@@ -191,9 +156,7 @@ useEffect(()=> {
               setHeader(""); 
             }} className='btn'>اضافة </button>
       </div>
-
       <div className="lessHeader min-h-screen bg-gray-100">
-        
       <div style={{display: bool? 'block' :'none' }} className="relative inline-block text-left">
       <button
         onClick={() => setOpen(!open)}
@@ -236,33 +199,12 @@ useEffect(()=> {
     </div>
       <div style={{width:"100%"}}>
         <div className="AllCardInApp ">
-
-          {bool ? 
-          <>
-         {
-            array.map((e)=>{
-              return (
-            <Card arr={e}/> );
-            })
-          }
-
-          </>
-
-          : (<ToDoDes/>) }
-      
-          
+          {bool ?<>{array.map((e)=>{return (<Card arr={e}/> );}) }</>: (<ToDoDes/>) }
       </div>
-
-      
-
       </div>
-      
-
       </div>
   </div>
   );
-
-  
 function fetchDone(){
   setBool(true);
   let newnew = JSON.parse(localStorage.getItem ("ToDoList") ); 
@@ -271,7 +213,6 @@ function fetchDone(){
   })
   setArray ( newarrar ) ; 
 }
-
 function DontDone(){
   setBool(true);
   let newnew = JSON.parse(localStorage.getItem ("ToDoList") ); 
@@ -291,19 +232,15 @@ function Card(arr) {
 
   return (
     <div className="AllContentInCard">
-
       <div className="headerinCard">
-
       <button 
       onClick={()=>{
         setElement ( arr.arr ) ;
         let newnew = array.filter ( (e)=> { 
           return e.id !=arr.arr.id ; 
         }) 
-
         localStorage.setItem("ToDoList", JSON.stringify(newnew) ); 
-        setArray(newnew) ; 
-        
+        setArray(newnew) ;
       }}
       className="btn2">حذف</button>  
 
@@ -317,7 +254,6 @@ function Card(arr) {
         setAdd(false); 
         setStatus(arr.arr.done)
       }}
-
       className="btn2" >تعديل</button>
       <button onClick={()=>{
         setElement ( arr.arr ) ;
@@ -328,18 +264,11 @@ function Card(arr) {
         setAdd(false); 
         setStatus(arr.arr.done)
 }} className="btn2" >عرض</button>
-
       <br />
       <h1 className="NameHeaders">{arr.arr.name}</h1>
       <img src= {arr.arr.done  ? require("./images/check.png"):require("./images/no.png") } alt="" />
       </div> 
     </div>
   )
-}
-
-
-
-}
-
-
+}}
 export default App;
